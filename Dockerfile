@@ -1,40 +1,28 @@
-FROM python:3.8-slim
+FROM moleszek/flake:1.0
 
 LABEL maintainer="michal.oleszek@outlook.com"
 
-WORKDIR /home
+RUN mkdir /robot
+WORKDIR /robot
 
-ARG version=86.0.4240.22
-
-RUN apt-get -y update \
-    && apt-get -y install --no-install-recommends apt-utils curl unzip ca-certificates gnupg gnupg2 gnupg1 \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+ARG version=0.28.0
 
 # Install Python dependencies
-RUN pip install selenium
-RUN pip install requests
-RUN pip install lxml
-RUN pip install beautifulsoup4
-RUN pip install flask
-RUN pip install numpy
+RUN pip3 install selenium
+RUN pip3 install requests
+RUN pip3 install beautifulsoup4
+RUN pip3 install flask
 
 # Install RobotFramework
-RUN pip install robotframework
-RUN pip install robotframework-selenium2library
+RUN pip3 install robotframework
+RUN pip3 install robotframework-selenium2library
 
-# Install Chrome & Chrome WebDriver
-RUN curl -sS -o - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
-RUN echo "deb [arch=amd64]  http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list
-RUN apt-get -y update \
-    && apt-get -y install --no-install-recommends google-chrome-stable \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
-RUN curl https://chromedriver.storage.googleapis.com/${version}/chromedriver_linux64.zip -o driver.zip
-RUN unzip driver.zip
-RUN mv chromedriver /usr/bin/chromedriver
-RUN chown root:root /usr/bin/chromedriver
-RUN chmod +x /usr/bin/chromedriver
-RUN rm -f driver.zip
+# Install Firefox & Gecko Driver
+RUN apk add --no-cache firefox-esr
+RUN wget https://github.com/mozilla/geckodriver/releases/download/v${version}/geckodriver-v${version}-linux64.tar.gz
+RUN tar -zxvf geckodriver-v${version}-linux64.tar.gz
+RUN mv geckodriver /usr/bin/geckodriver
+RUN chmod +x /usr/bin/geckodriver
+RUN rm -f geckodriver-v${version}-linux64.tar.gz
 
-ENTRYPOINT [ "python" ]
+ENTRYPOINT [ "python3" ]
