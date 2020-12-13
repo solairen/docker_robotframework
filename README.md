@@ -1,12 +1,12 @@
 ### About:
-* OS: python:3.8.0-slim
+* OS: private image based on alpine 3.12.0
 
 This docker container contains:
 * [Python](https://www.python.org/)
 * [Selenium](https://www.selenium.dev/)
 * [RobotFramework](https://robotframework.org/)
 * [Selenium2Library](https://robotframework.org/Selenium2Library/Selenium2Library.html)
-* [ChromeWebDriver](https://chromedriver.chromium.org/getting-started)
+* [GeckoDriver](https://github.com/mozilla/geckodriver)
 
 ### How to build or download:
 #### Build docker images from Dockerfile:
@@ -15,19 +15,17 @@ This docker container contains:
 #### Download from Docker repository:
 * docker pull moleszek/robotframework:1.0
 
-### To run robot framework script using python-robotframework Docker image directly:
-* docker run -it --rm -v {localFolderPath}:/home -w /home moleszek/python-robotframework:1.0 -m robot {robotTest}.robot
+### How to run:
+#### To run robot framework script using robotframework Docker image directly:
+* docker run -it --rm -v {localFolderPath}:/robot moleszek/robotframework:1.0 -m robot {robotTest}.robot
 
-### To run robot scripts from docker compose:
-* docker-compose run --rm robot -m robot {robotFramework}.robot
-
-### To run chrome in headless mode add this parameters to Keywords in robot test
-```
-    ${chrome options} =     Evaluate    sys.modules['selenium.webdriver'].ChromeOptions()    sys, selenium.webdriver
-    Call Method    ${chrome options}   add_argument    headless
-    Call Method    ${chrome options}   add_argument    disable-gpu
-    Call Method    ${chrome options}   add_argument    no-sandbox
-    Create Webdriver    Chrome    chrome_options=${chrome options}
-    Go to    www.bbc.com
+#### To run Firefox in headless mode add this parameters to Keywords in robot test
+```txt
+    ${firefox options} =     Evaluate    sys.modules['selenium.webdriver'].firefox.webdriver.Options()    sys, selenium.webdriver
+    Call Method    ${firefox options}   add_argument    -headless
+    Create Webdriver    Firefox    firefox_options=${firefox options}
     Maximize Browser Window
+    Go To    https://github.com
+    Capture Page Screenshot
+    [Teardown]    Close All Browsers
 ```
