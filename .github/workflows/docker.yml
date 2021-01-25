@@ -19,7 +19,7 @@ jobs:
       uses: ./.github/actions/docker_tag
       with:
         username: ${{ secrets.docker_username }}
-        password: ${{ secrets.docker_password }}
+        password: ${{ secrets.docker_token }}
         repository: moleszek/robotframework
         tag_latest: false
         push: false
@@ -42,7 +42,7 @@ jobs:
         uses: ./.github/actions/docker_tag
         with:
           username: ${{ secrets.docker_username }}
-          password: ${{ secrets.docker_password }}
+          password: ${{ secrets.docker_token }}
           repository: moleszek/robotframework
           tag_latest: false
           push: true
