@@ -5,7 +5,7 @@ LABEL maintainer="michal.oleszek@outlook.com"
 RUN mkdir /robot
 WORKDIR /robot
 
-ARG version=0.28.0
+ARG version=0.29.0
 
 # Install Python dependencies
 RUN pip3 install selenium
