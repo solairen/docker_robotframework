@@ -49,10 +49,10 @@ jobs:
           github: true
           token: ${{ secrets.token }}
           owner: ${{ github.repository_owner }}
-      - name: Update docker readme
-        uses: peter-evans/dockerhub-description@v2
-        env:
-          DOCKERHUB_USERNAME: ${{ secrets.docker_username }}
-          DOCKERHUB_PASSWORD: ${{ secrets.docker_password }}
-          DOCKERHUB_REPOSITORY: moleszek/robotframework
-          README_FILEPATH: ./README.md
+      #- name: Update docker readme
+      #  uses: peter-evans/dockerhub-description@v2
+      #  env:
+      #    DOCKERHUB_USERNAME: ${{ secrets.docker_username }}
+      #    DOCKERHUB_PASSWORD: ${{ secrets.docker_password }}
+      #    DOCKERHUB_REPOSITORY: moleszek/robotframework
+      #    README_FILEPATH: ./README.md

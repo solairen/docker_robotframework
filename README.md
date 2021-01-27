@@ -1,5 +1,5 @@
 ### About:
-* OS: private image based on alpine 3.12.0
+* OS: private image based on alpine linux
 
 This docker container contains:
 * [Python](https://www.python.org/)

@@ -54,7 +54,7 @@ jobs:
       with:
         name: dockerfile
         path: .github/actions/${{ github.repository }}
-    - name: Push changes to docker_terraform repository
+    - name: Push changes to docker_robotframework repository
       uses: actions-js/push@master
       with:
         github_token: ${{ secrets.token }}
