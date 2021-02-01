@@ -60,7 +60,7 @@ jobs:
         github_token: ${{ secrets.token }}
         author_email: ${{ secrets.mail }}
         author_name: ${{ github.repository_owner }}
-        message: ${{ needs.Check_Version.outputs.ver != }}
+        message: ${{ needs.Check_Version.outputs.ver }}
         branch: main
         directory: .github/actions/${{ github.repository }}
         repository: ${{ github.repository }}
