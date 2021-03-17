@@ -8,16 +8,19 @@ This docker container contains:
 * [Selenium2Library](https://robotframework.org/Selenium2Library/Selenium2Library.html)
 * [GeckoDriver](https://github.com/mozilla/geckodriver)
 
+### Tag version
+Check latest container tag [version](https://hub.docker.com/r/moleszek/robotframework/tags?page=1&ordering=last_updated) and change **<x.x>** with proper tag version.
+
 ### How to build or download:
 #### Build docker images from Dockerfile:
 * docker build . -t {tagname}
 
 #### Download from Docker repository:
-* docker pull moleszek/robotframework:1.0
+* docker pull moleszek/robotframework:<x.x>
 
 ### How to run:
 #### To run robot framework script using robotframework Docker image directly:
-* docker run -it --rm -v {localFolderPath}:/robot moleszek/robotframework:1.0 -m robot {robotTest}.robot
+* docker run -it --rm -v {localFolderPath}:/robot moleszek/robotframework:<x.x> -m robot {robotTest}.robot
 
 #### To run Firefox in headless mode add this parameters to Keywords in robot test
 ```txt
