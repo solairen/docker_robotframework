@@ -32,7 +32,7 @@ jobs:
         ref: master
         token: ${{ secrets.token }}
         path: .github/actions/docker_tag
-    - name: Test docker imgage
+    - name: Test docker image
       uses: ./.github/actions/docker_tag
       with:
         username: ${{ secrets.docker_username }}
