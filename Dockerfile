@@ -1,4 +1,4 @@
-FROM moleszek/flake:1.2
+FROM moleszek/flake:1.3
 
 LABEL maintainer="michal.oleszek@outlook.com"
 
