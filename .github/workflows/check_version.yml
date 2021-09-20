@@ -65,7 +65,7 @@ jobs:
         uses: actions-js/push@master
         with:
           github_token: ${{ env.GH_TOKEN }}
-          author_email: ${{ secrets.mail }}
+          author_email: ${{ env.MAIL }}
           author_name: ${{ github.repository_owner }}
           message: ${{ needs.check_gecko_driver_version.outputs.ver }}
           branch: main
