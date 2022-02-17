@@ -26,7 +26,7 @@ jobs:
   notify_on_success:
     name: Send notification on success
     needs:
-      - push_docker_image_to_dockerhub
+      - deploy
     if: ${{ success() }}
     runs-on: ubuntu-latest
     steps:
@@ -37,7 +37,7 @@ jobs:
   notify_on_failure:
     name: Send notification on failure
     needs:
-      - push_docker_image_to_dockerhub
+      - deploy
     if: ${{ failure() }}
     runs-on: ubuntu-latest
     steps:
