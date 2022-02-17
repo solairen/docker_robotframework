@@ -10,6 +10,7 @@ on:
 
 env:
   GH_TOKEN: ${{ secrets.token }}
+  DISCORD: ${{ secrets.discord_webhook }}
 
 jobs:
   test:
@@ -25,3 +26,28 @@ jobs:
           token: ${{ env.GH_TOKEN }}
       - name: Build dockerfile
         run: docker build -t vagrant -f Dockerfile .
+  notify_on_success:
+    name: Send notification on success
+    needs:
+      - test
+    if: ${{ success() }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send notification
+        uses: sarisia/actions-status-discord@v1
+        with:
+          webhook: ${{ env.DISCORD }}
+          description: "Successfully test docker image!"
+  notify_on_failure:
+    name: Send notification on failure
+    needs:
+      - test
+    if: ${{ failure() }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send notification
+        uses: sarisia/actions-status-discord@v1
+        with:
+          webhook: ${{ env.DISCORD }}
+          status: failure
+          description: "Failed to test docker image!"
