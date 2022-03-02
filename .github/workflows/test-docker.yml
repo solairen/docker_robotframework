@@ -19,7 +19,7 @@ jobs:
     container: docker:stable
     steps:
       - name: Checkout ${{ github.repository }} repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: ${{ github.repository }}
           ref: ${{ github.ref }}
