@@ -1,2 +1,2 @@
-**/tests/*.html
-**/tests/*.xml
+!**/tests/*.robot
+**/tests/*
