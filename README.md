@@ -1,5 +1,5 @@
 ### About:
-* OS: python 3.10
+* OS: python 3.11.1
 
 This docker container contains:
 * [Python](https://www.python.org/)
