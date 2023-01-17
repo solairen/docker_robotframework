@@ -1,12 +1,12 @@
-FROM python:3.10-slim
+FROM python:3.11.1-slim
 
-LABEL maintainer="mrsolairen@outlook.com"
+LABEL maintainer="solairen@solairen.tech"
 ARG workdir=/robot
 
 RUN mkdir ${workdir}
 WORKDIR ${workdir}
 
-ARG version=97.0.4692.71
+ARG version=110.0.5481.30
 
 COPY requirements.txt ${workdir}
 
