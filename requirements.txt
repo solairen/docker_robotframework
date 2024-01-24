@@ -1,6 +1,6 @@
 selenium==4.17.1
 requests==2.31.0
-beautifulsoup4==4.12.2
+beautifulsoup4==4.12.3
 flask==3.0.1
 robotframework==7.0
 robotframework-seleniumlibrary==6.2.0
