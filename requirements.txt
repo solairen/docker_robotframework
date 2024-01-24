@@ -1,4 +1,4 @@
-selenium==4.17.1
+selenium==4.17.2
 requests==2.31.0
 beautifulsoup4==4.12.3
 flask==3.0.1
