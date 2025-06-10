@@ -1,5 +1,5 @@
 selenium==4.33.0
-requests==2.32.3
+requests==2.32.4
 beautifulsoup4==4.13.4
 flask==3.1.1
 robotframework==7.2.2
