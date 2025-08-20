@@ -1,53 +1,31 @@
-name: Test docker image
+name: Test Docker image
 
 on:
-  push:
-    branches-ignore:
-      - "main"
   pull_request:
-    branches-ignore:
-      - "main"
+    types: [opened, synchronize, reopened]
 
 env:
   GH_TOKEN: ${{ secrets.token }}
-  DISCORD: ${{ secrets.discord_webhook }}
 
 jobs:
   test:
-    name: Test docker image
-    runs-on: ubuntu-latest
-    container: docker:stable
+    name: Test Docker image
+    runs-on: ubuntu-24.04
+    strategy:
+      matrix:
+        platform: [linux/amd64, linux/arm64]
+
     steps:
-      - name: Checkout ${{ github.repository }} repository
-        uses: actions/checkout@v5
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+        
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build with tag latest
+        uses: docker/build-push-action@v6
         with:
-          repository: ${{ github.repository }}
-          ref: ${{ github.ref }}
-          token: ${{ env.GH_TOKEN }}
-      - name: Build dockerfile
-        run: docker build -t vagrant -f Dockerfile .
-  notify_on_success:
-    name: Send notification on success
-    needs:
-      - test
-    if: ${{ success() }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Send notification
-        uses: sarisia/actions-status-discord@v1
-        with:
-          webhook: ${{ env.DISCORD }}
-          description: "Successfully test docker image!"
-  notify_on_failure:
-    name: Send notification on failure
-    needs:
-      - test
-    if: ${{ failure() }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Send notification
-        uses: sarisia/actions-status-discord@v1
-        with:
-          webhook: ${{ env.DISCORD }}
-          status: failure
-          description: "Failed to test docker image!"
+          file: Dockerfile
+          push: false
+          tags: ghcr.io/${{ github.repository }}/robotframework:test
+          platforms: ${{ matrix.platform }}
