@@ -2,6 +2,7 @@ name: Docker registry
 on:
   workflow_dispatch:
 
+
 env:
   DOCKER_USER: ${{ secrets.docker_username }}
   DOCKER_TOKEN: ${{ secrets.docker_token }}
@@ -12,37 +13,23 @@ jobs:
     name: Push docker image to docker hub
     runs-on: ubuntu-latest
     steps:
-      - name: Login to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ env.DOCKER_USER }}
-          password: ${{ env.DOCKER_TOKEN }}
-      - name: Build and push
-        uses: docker/build-push-action@v6
-        with:
-          file: Dockerfile
-          push: true
-          tags: moleszek/robotframework:latest
-  notify_on_success:
-    name: Send notification on success
-    needs:
-      - deploy
-    if: ${{ success() }}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: sarisia/actions-status-discord@v1
-        with:
-          webhook: ${{ env.DISCORD }}
-          description: "Successfully built and push docker image to DockerHub!"
-  notify_on_failure:
-    name: Send notification on failure
-    needs:
-      - deploy
-    if: ${{ failure() }}
-    runs-on: ubuntu-latest
-    steps:
-      - uses: sarisia/actions-status-discord@v1
-        with:
-          webhook: ${{ env.DISCORD }}
-          status: failure
-          description: "Failed to build and push docker image to DockerHub!"
+
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v3
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+
+    - name: Login to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ env.DOCKER_USER }}
+        password: ${{ env.DOCKER_TOKEN }}
+
+    - name: Build and push
+      uses: docker/build-push-action@v6
+      with:
+        file: Dockerfile
+        push: true
+        tags: moleszek/robotframework:latest
+        platforms: linux/amd64,linux/arm64

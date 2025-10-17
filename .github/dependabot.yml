@@ -1,11 +1,21 @@
 ---
 version: 2
 updates:
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
-      interval: "daily"
-  - package-ecosystem: "pip"
-    directory: "/"
-    schedule:
-      interval: "daily"
+- package-ecosystem: "github-actions"
+  directory: "/"
+  schedule:
+    interval: "daily"
+  assignees:
+  - solairen
+- package-ecosystem: "pip"
+  directory: "/"
+  schedule:
+    interval: "daily"
+  assignees:
+  - solairen
+- package-ecosystem: "docker"
+  directory: "/docker"
+  schedule:
+    interval: "daily"
+  assignees:
+  - solairen
