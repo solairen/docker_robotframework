@@ -1,12 +1,10 @@
-FROM python:3.14.0-slim-trixie
+FROM python:3.14-slim-trixie
 
-LABEL maintainer="solairen@solairen.tech"
+LABEL maintainer="michal@michaloleszek.com"
 ARG workdir=/robot
 
 RUN mkdir ${workdir}
 WORKDIR ${workdir}
-
-ARG version=131.0.6778.204
 
 COPY requirements.txt ${workdir}
 

@@ -1,0 +1,38 @@
+name: Task
+description: What should be added?
+title: "[Task]: "
+labels: ["task"]
+assignees:
+  - solairen
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this task report.
+  - type: textarea
+    id: task-set
+    attributes:
+      label: What should be added?
+      placeholder: Describe the new feature or addition and how it should work.
+    validations:
+      required: true
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      description: What component does this task refer to?
+      options:
+        - Dockerfile
+        - Robot Framework configuration
+        - Chromium / ChromeDriver
+        - Python dependencies
+        - CI/CD
+        - Documentation
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      placeholder: Any additional context, links, or screenshots.

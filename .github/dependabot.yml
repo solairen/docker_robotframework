@@ -1,21 +1,29 @@
 ---
 version: 2
 updates:
-- package-ecosystem: "github-actions"
-  directory: "/"
-  schedule:
-    interval: "daily"
-  assignees:
-  - solairen
-- package-ecosystem: "pip"
-  directory: "/"
-  schedule:
-    interval: "daily"
-  assignees:
-  - solairen
-- package-ecosystem: "docker"
-  directory: "/docker"
-  schedule:
-    interval: "daily"
-  assignees:
-  - solairen
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    assignees:
+      - solairen
+    commit-message:
+      prefix: "ci"
+
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    assignees:
+      - solairen
+    commit-message:
+      prefix: "deps"
+
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    assignees:
+      - solairen
+    commit-message:
+      prefix: "docker"

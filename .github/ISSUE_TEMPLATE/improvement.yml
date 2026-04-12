@@ -1,0 +1,45 @@
+name: Improvement
+description: What should be improved?
+title: "[Improvement]: "
+labels: ["change request"]
+assignees:
+  - solairen
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this improvement report.
+  - type: textarea
+    id: actual-set
+    attributes:
+      label: Current behavior
+      placeholder: Describe how it currently works.
+    validations:
+      required: true
+  - type: textarea
+    id: how-should-works-set
+    attributes:
+      label: Desired behavior
+      placeholder: Describe how it should work instead.
+    validations:
+      required: true
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      description: What component does this improvement refer to?
+      options:
+        - Dockerfile
+        - Robot Framework configuration
+        - Chromium / ChromeDriver
+        - Python dependencies
+        - CI/CD
+        - Documentation
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: version
+    attributes:
+      label: Docker image version
+      placeholder: "e.g. moleszek/robotframework:latest (pulled on 2026-04-10)"

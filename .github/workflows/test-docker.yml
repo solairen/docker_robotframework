@@ -19,7 +19,7 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v4
 
-    - name: Build with tag latest
+    - name: Build with tag test
       uses: docker/build-push-action@v7
       with:
         file: Dockerfile

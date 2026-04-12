@@ -1,29 +1,49 @@
-### About:
-* Base Image: Python 3.14.0-slim-trixie
+# Docker Robot Framework
 
-This docker container contains:
-* [Python](https://www.python.org/) 3.14.0
-* [Selenium](https://www.selenium.dev/) 4.36.0
-* [RobotFramework](https://robotframework.org/) 7.3.2
-* [SeleniumLibrary](https://robotframework.org/SeleniumLibrary/) 6.8.0
-* [Chromium](https://www.chromium.org/) & ChromeDriver 131.0.6778.204
-* [Requests](https://docs.python-requests.org/en/latest/) 2.32.5
-* [Beautifulsoup4](https://www.crummy.com/software/BeautifulSoup/) 4.14.2
-* [Flask](https://palletsprojects.com/p/flask/) 3.1.2
+[![Docker Hub](https://img.shields.io/docker/pulls/moleszek/robotframework)](https://hub.docker.com/r/moleszek/robotframework)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-### How to build or download:
-#### Build docker images from Dockerfile:
-* docker build . -t {tagname}
+A Docker container pre-configured with [Robot Framework](https://robotframework.org/) and related testing libraries for automated browser and API testing.
 
-#### Download from Docker repository:
-* docker pull moleszek/robotframework:latest
+## Included Components
 
-### How to run:
-#### To run robot framework script using robotframework Docker image directly:
-* docker run -it --rm -v {localFolderPath}:/robot moleszek/robotframework:latest -m robot {robotTest}.robot
+| Component | Version |
+| --------- | ------- |
+| [Python](https://www.python.org/) | 3.14.0 |
+| [Robot Framework](https://robotframework.org/) | 7.4.2 |
+| [SeleniumLibrary](https://robotframework.org/SeleniumLibrary/) | 6.8.0 |
+| [Selenium](https://www.selenium.dev/) | 4.43.0 |
+| [Chromium](https://www.chromium.org/) & ChromeDriver | 131.0.6778.204 |
+| [Requests](https://docs.python-requests.org/en/latest/) | 2.33.1 |
+| [BeautifulSoup4](https://www.crummy.com/software/BeautifulSoup/) | 4.14.3 |
+| [Flask](https://palletsprojects.com/p/flask/) | 3.1.3 |
 
-#### Add headless Chromium to keywords
-Inside the **keywords** section add:
+## Getting Started
+
+### Pull from Docker Hub
+
+```bash
+docker pull moleszek/robotframework:latest
+```
+
+### Build locally
+
+```bash
+docker build . -t robotframework:latest
+```
+
+## Usage
+
+Run a Robot Framework test suite:
+
+```bash
+docker run -it --rm -v /path/to/tests:/robot moleszek/robotframework:latest -m robot test_suite.robot
+```
+
+### Headless Chromium
+
+To run browser tests inside the container, add the following keyword to your Robot Framework test:
+
 ```robot
 *** Keywords ***
 Chromium Headless
@@ -38,6 +58,16 @@ Chromium Headless
     Create Webdriver    Chrome    options=${chrome_options}    service=${service}
 ```
 
-This **keyword** allows to run Chromium in headless mode.
+See [tests/example.robot](tests/example.robot) for a complete working example.
 
-See [example](tests/example.robot).
+## Multi-Architecture Support
+
+The Docker image is built for both `linux/amd64` and `linux/arm64` platforms.
+
+## Contributing
+
+Contributions are welcome! Please read the [Contributing Guide](CONTRIBUTING.md) before submitting a pull request.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
