@@ -1,0 +1,66 @@
+name: Bug Report
+description: File a bug report
+title: "[Bug]: "
+labels: ["bug"]
+assignees:
+  - solairen
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report.
+  - type: textarea
+    id: actual-set
+    attributes:
+      label: Actual result
+      placeholder: Describe actual result.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction-steps-set
+    attributes:
+      label: Reproduction steps
+      placeholder: Write steps to reproduce bug.
+    validations:
+      required: true
+  - type: textarea
+    id: expected-set
+    attributes:
+      label: Expected result
+      placeholder: Describe expected result.
+    validations:
+      required: true
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      description: What component does this bug affect?
+      options:
+        - Dockerfile
+        - Robot Framework configuration
+        - Chromium / ChromeDriver
+        - Python dependencies
+        - CI/CD
+        - Documentation
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: version
+    attributes:
+      label: Docker image version
+      placeholder: "e.g. moleszek/robotframework:latest (pulled on 2026-04-10)"
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
+      render: bash
+  - type: dropdown
+    id: running-in-docker
+    attributes:
+      label: Running in Docker
+      description: Is the application running inside the provided Docker image/container?
+      options:
+        - "Yes"
+        - "No"
