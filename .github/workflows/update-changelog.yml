@@ -14,7 +14,7 @@ jobs:
 
     steps:
     - name: Disable ruleset in repository
-      uses: solairen/ruleset-trigger@1.0.5
+      uses: solairen/ruleset-trigger@1.0.6
       with:
         token: ${{ secrets.GHCR_PASSWORD }}
         ruleset_id: ${{ secrets.RULESET_ID }}
@@ -28,7 +28,7 @@ jobs:
         commit_message: "Update changelog for new release"
 
     - name: Enable ruleset in repository
-      uses: solairen/ruleset-trigger@1.0.5
+      uses: solairen/ruleset-trigger@1.0.6
       with:
         token: ${{ secrets.GHCR_PASSWORD }}
         ruleset_id: ${{ secrets.RULESET_ID }}
