@@ -67,3 +67,11 @@
 
 
 **Full Changelog**: https://github.com/solairen/docker_robotframework/compare/7.2.2...1.1.0
+
+## 1.1.1
+
+## What's Changed
+* deps: bump selenium from 4.49.0 to 4.50.0 by @dependabot[bot] in https://github.com/solairen/docker_robotframework/pull/189
+
+
+**Full Changelog**: https://github.com/solairen/docker_robotframework/compare/1.1.0...1.1.1
