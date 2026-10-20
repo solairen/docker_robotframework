@@ -1,4 +1,4 @@
-FROM python:3.14-slim-trixie
+FROM python:3.15-slim-trixie
 
 LABEL maintainer="michal@michaloleszek.com"
 ARG workdir=/robot
