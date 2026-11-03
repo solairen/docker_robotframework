@@ -75,3 +75,12 @@
 
 
 **Full Changelog**: https://github.com/solairen/docker_robotframework/compare/1.1.0...1.1.1
+
+## 1.1.2
+
+## What's Changed
+* ci: bump docker/login-action from 4.6.0 to 4.7.0 by @dependabot[bot] in https://github.com/solairen/docker_robotframework/pull/192
+* deps: bump selenium from 4.50.0 to 4.52.0 by @dependabot[bot] in https://github.com/solairen/docker_robotframework/pull/193
+
+
+**Full Changelog**: https://github.com/solairen/docker_robotframework/compare/1.1.1...1.1.2
